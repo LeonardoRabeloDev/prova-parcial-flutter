@@ -125,7 +125,7 @@ class _TelaLoginViewState extends State<TelaLoginView> {
                     Navigator.pushNamed(context, "t2");
                   },
                   child: Text(
-                    "Entrar",
+                    "Cadastrar-se",
                     style: TextStyle(fontSize: 36),
                   ),
                 ),

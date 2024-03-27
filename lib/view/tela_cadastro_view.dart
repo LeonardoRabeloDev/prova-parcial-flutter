@@ -23,6 +23,60 @@ class _TelaCadastroViewState extends State<TelaCadastroView> {
         title: Text("Tela de Cadastro"),
         backgroundColor: Colors.blue.shade400,
       ),
+      body: Padding(
+        padding: const EdgeInsets.all(20),
+        child: SingleChildScrollView(
+          scrollDirection: Axis.vertical,
+          child: Form(
+            key: formKey,
+            child: Column(
+              children: [
+                // email input
+                TextFormField(
+                  controller: txtEmail,
+
+                  decoration: InputDecoration(
+                    labelText: "Email",
+                    border: OutlineInputBorder(),
+                  ),
+
+                  // validacao
+
+                  validator: (value) {
+                    if (value!.isEmpty) {
+                      return "Informe um valor";
+                    }
+                    return null;
+                  },
+                ),
+
+                SizedBox(
+                  height: 30,
+                ),
+
+                // senha input
+                TextFormField(
+                  controller: txtSenha,
+
+                  decoration: InputDecoration(
+                    labelText: "Senha",
+                    border: OutlineInputBorder(),
+                  ),
+
+                  // validacao
+
+                  validator: (value) {
+                    if (value!.isEmpty) {
+                      return "Informe um valor";
+                    }
+                    return null;
+                  },
+                ),
+              ],
+            ),
+          ),
+        ),
+      ),
     );
   }
 }
