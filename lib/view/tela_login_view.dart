@@ -1,3 +1,5 @@
+import 'package:execs/Model/Usuario.dart';
+import 'package:execs/view/caixa_dialogo.dart';
 import 'package:flutter/material.dart';
 
 class TelaLoginView extends StatefulWidget {
@@ -14,6 +16,15 @@ class _TelaLoginViewState extends State<TelaLoginView> {
   // controladores text input
   var txtEmail = TextEditingController();
   var txtSenha = TextEditingController();
+
+  List<Usuario> lista = [];
+
+  @override
+  void initState() {
+    lista.add(Usuario("admin", "admin"));
+
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -73,8 +84,8 @@ class _TelaLoginViewState extends State<TelaLoginView> {
                   validator: (value) {
                     if (value!.isEmpty) {
                       return "Informe um valor";
-                    } else if (value.length < 6) {
-                      return "Senha menor que 6 caracteres";
+                    } else if (value.length < 4) {
+                      return "Senha menor que 4 caracteres";
                     }
 
                     return null;
@@ -99,6 +110,18 @@ class _TelaLoginViewState extends State<TelaLoginView> {
                       setState(() {
                         var email = txtEmail.text;
                         var senha = txtSenha.text;
+
+                        print(email);
+                        print(senha);
+                        print(lista.length);
+                        lista.forEach((usr) {
+                          print("usr " + usr.getEmail());
+                          print("usr " + usr.getSenha());
+                          if (usr.getEmail() == email &&
+                              usr.getSenha() == senha) {
+                            CaixaDialogo().caixaDialogo(context, "opa", "opa");
+                          }
+                        });
                       });
                     } else {
                       // erro na validacao
@@ -122,7 +145,10 @@ class _TelaLoginViewState extends State<TelaLoginView> {
                     foregroundColor: Colors.yellow,
                   ),
                   onPressed: () {
-                    Navigator.pushNamed(context, "t2");
+                    Navigator.pushNamed(context, "t2", arguments: {
+                      "email": txtEmail.text,
+                      "senha": txtSenha.text,
+                    });
                   },
                   child: Text(
                     "Cadastrar-se",
