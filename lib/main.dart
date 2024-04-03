@@ -30,7 +30,7 @@ class MainApp extends StatelessWidget {
       routes: {
         "t1": (context) => TelaLoginView(),
         "t2": (context) => TelaCadastroView(),
-        // "t3": (context) => TelaListaComprasView(),
+        "t3": (context) => TelaListaComprasView(),
         // "t4": (context) => TelaSobreView(),
       },
     );

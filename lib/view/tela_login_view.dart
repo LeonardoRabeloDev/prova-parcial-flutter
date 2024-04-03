@@ -16,8 +16,9 @@ class _TelaLoginViewState extends State<TelaLoginView> {
   // controladores text input
   var txtEmail = TextEditingController();
   var txtSenha = TextEditingController();
+  bool flag = false;
 
-  List<Usuario> lista = [];
+  static List<Usuario> lista = [];
 
   @override
   void initState() {
@@ -28,6 +29,9 @@ class _TelaLoginViewState extends State<TelaLoginView> {
 
   @override
   Widget build(BuildContext context) {
+    var email = txtEmail.text;
+    var senha = txtSenha.text;
+
     return Scaffold(
       appBar: AppBar(
         title: Text("Tela de Login"),
@@ -108,18 +112,22 @@ class _TelaLoginViewState extends State<TelaLoginView> {
                       // validado com sucesso
 
                       setState(() {
-                        var email = txtEmail.text;
-                        var senha = txtSenha.text;
+                        email = txtEmail.text;
+                        senha = txtSenha.text;
+                        flag = false;
 
-                        print(email);
-                        print(senha);
-                        print(lista.length);
                         lista.forEach((usr) {
-                          print("usr " + usr.getEmail());
-                          print("usr " + usr.getSenha());
                           if (usr.getEmail() == email &&
                               usr.getSenha() == senha) {
-                            CaixaDialogo().caixaDialogo(context, "opa", "opa");
+                            flag = true;
+                            caixaDialogo(context, "Logado com sucesso!", "");
+                            Navigator.pushNamed(context, "t3",
+                                arguments: lista);
+                          }
+
+                          if (!flag) {
+                            caixaDialogo(context, "Usuário não encontrado",
+                                "Tente novamente");
                           }
                         });
                       });
@@ -145,10 +153,7 @@ class _TelaLoginViewState extends State<TelaLoginView> {
                     foregroundColor: Colors.yellow,
                   ),
                   onPressed: () {
-                    Navigator.pushNamed(context, "t2", arguments: {
-                      "email": txtEmail.text,
-                      "senha": txtSenha.text,
-                    });
+                    Navigator.pushNamed(context, "t2", arguments: lista);
                   },
                   child: Text(
                     "Cadastrar-se",

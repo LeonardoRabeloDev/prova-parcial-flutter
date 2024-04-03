@@ -1,3 +1,4 @@
+import 'package:execs/Model/Usuario.dart';
 import 'package:flutter/material.dart';
 
 class TelaCadastroView extends StatefulWidget {
@@ -18,6 +19,8 @@ class _TelaCadastroViewState extends State<TelaCadastroView> {
 
   @override
   Widget build(BuildContext context) {
+    List<Usuario> lista = ModalRoute.of(context)!.settings.arguments as List<Usuario>;
+
     return Scaffold(
       appBar: AppBar(
         title: Text("Tela de Cadastro"),
@@ -71,6 +74,28 @@ class _TelaCadastroViewState extends State<TelaCadastroView> {
                     }
                     return null;
                   },
+                ),
+
+                SizedBox(
+                  height: 30,
+                ),
+
+                OutlinedButton(
+                  style: OutlinedButton.styleFrom(
+                    minimumSize: Size(200, 60),
+                    backgroundColor: Colors.blue,
+                    foregroundColor: Colors.yellow,
+                  ),
+                  onPressed: () {
+                    if (formKey.currentState!.validate()) {
+                      lista.add(Usuario(txtEmail.text, txtSenha.text));
+                      Navigator.pop(context);
+                    }
+                  },
+                  child: Text(
+                    "Cadastrar",
+                    style: TextStyle(fontSize: 36),
+                  ),
                 ),
               ],
             ),
