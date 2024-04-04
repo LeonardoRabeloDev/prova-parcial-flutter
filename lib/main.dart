@@ -3,7 +3,8 @@ import 'package:flutter/material.dart';
 
 import 'view/tela_login_view.dart';
 import 'view/tela_cadastro_view.dart';
-import 'view/tela_lista_compras_view.dart';
+import 'view/tela_listas.dart';
+import 'view/tela_ver_lista_view.dart';
 import 'view/tela_sobre_view.dart';
 
 void main() {
@@ -30,7 +31,8 @@ class MainApp extends StatelessWidget {
       routes: {
         "t1": (context) => TelaLoginView(),
         "t2": (context) => TelaCadastroView(),
-        "t3": (context) => TelaListaComprasView(),
+        "t3": (context) => TelaListasView(),
+        "t4": (context) => TelaVerListaView(),
         // "t4": (context) => TelaSobreView(),
       },
     );
