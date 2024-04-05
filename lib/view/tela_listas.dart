@@ -1,4 +1,6 @@
 import 'package:execs/Model/Lista.dart';
+import 'package:execs/view/caixa_dialogo.dart';
+import 'package:execs/view/caixa_input.dart';
 import 'package:flutter/material.dart';
 
 class TelaListasView extends StatefulWidget {
@@ -13,46 +15,50 @@ class _TelaListasViewState extends State<TelaListasView> {
 
   @override
   void initState() {
-    listas.add(Lista("Lista de compras"));
+    listas.add(Lista("Lista Jantar"));
+    listas[0].addProduto("Salmão", 14.0);
+    listas[0].addProduto("Vinho", 38.0);
+
+    listas.add(Lista("Lista Mensal"));
+    listas[1].addProduto("Arroz", 28.0);
+
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
-
-    return ListView.builder(
-      itemCount: listas.length,
-      itemBuilder: (context, index) {
-        return Card(
-          child: ListTile(
-            leading: Icon(Icons.shopping_bag_outlined),
-            title: Text('${listas[index].nome}'),
-            subtitle: Text('Items: ${listas[index].getLength()}'),
-
-            //
-            // Navegar para View dos Municípios
-            //
-            trailing: Icon(Icons.arrow_right),
-            onTap: () {
-              Navigator.pushNamed(context, "t4", arguments: listas[index]);
-            },
-          ),
-        );
-      },
-    );
-
     return Scaffold(
       appBar: AppBar(
-        title: Text("Lista de compras"),
+        title: Text("Listas cadastradas"),
         backgroundColor: Colors.blue.shade400,
       ),
       body: Padding(
         padding: EdgeInsets.all(20),
-        child: SingleChildScrollView(
-          child: Column(
-            children: [],
-          ),
+        child: ListView.builder(
+          itemCount: listas.length,
+          itemBuilder: (context, index) {
+            return Card(
+              child: ListTile(
+                leading: Icon(Icons.shopping_bag_outlined),
+                title: Text('${listas[index].nome}'),
+                subtitle: Text('Items: ${listas[index].getLength()}'),
+                trailing: Icon(Icons.arrow_right),
+                onTap: () {
+                  Navigator.pushNamed(context, "t4", arguments: listas[index]);
+                },
+              ),
+            );
+          },
         ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+
+            caixaInput(context, listas, setState);
+          
+        },
+        shape: CircleBorder(),
+        child: Icon(Icons.add),
       ),
     );
   }

@@ -19,8 +19,12 @@ class Lista {
     return this.lista.length;
   }
 
+  addProduto(nome, preco) {
+    lista.add(Produto(nome, preco));
+  }
+
   createList() {
-    ListView.builder(
+    return ListView.builder(
         itemCount: lista.length,
         itemBuilder: (context, index) {
           return Card(

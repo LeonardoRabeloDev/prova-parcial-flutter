@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-Future<dynamic> caixaDialogo(context, titulo, [mensagem]) {
+Future<dynamic> caixaDialogo(context, titulo, mensagem) {
   
   return showDialog(
     context: context,
