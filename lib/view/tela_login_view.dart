@@ -1,3 +1,4 @@
+import 'package:execs/Model/Lista.dart';
 import 'package:execs/Model/Usuario.dart';
 import 'package:execs/view/caixa_dialogo.dart';
 import 'package:flutter/material.dart';
@@ -20,10 +21,20 @@ class _TelaLoginViewState extends State<TelaLoginView> {
 
   static List<Usuario> lista = [];
 
+  static List<Lista> listas = [];
+
   @override
   void initState() {
-    lista.add(Usuario("admin", "admin"));
+    if (lista.isEmpty) {
+      lista.add(Usuario("admin", "admin"));
 
+      listas.add(Lista("Lista Jantar"));
+      listas[0].addProduto("Salmão", 14.0);
+      listas[0].addProduto("Vinho", 38.0);
+
+      listas.add(Lista("Lista Mensal"));
+      listas[1].addProduto("Arroz", 28.0);
+    }
     super.initState();
   }
 
@@ -34,7 +45,7 @@ class _TelaLoginViewState extends State<TelaLoginView> {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text("Tela de Login"),
+        title: const Text("Tela de Login"),
         backgroundColor: Colors.blue.shade400,
       ),
       body: Padding(
@@ -47,12 +58,12 @@ class _TelaLoginViewState extends State<TelaLoginView> {
               children: [
                 // imagem
                 Icon(
-                  Icons.sentiment_satisfied,
+                  Icons.shopping_cart_outlined,
                   size: 120,
                   color: Colors.blue.shade900,
                 ),
 
-                SizedBox(
+                const SizedBox(
                   height: 30,
                 ),
 
@@ -60,7 +71,7 @@ class _TelaLoginViewState extends State<TelaLoginView> {
                 TextFormField(
                   controller: txtEmail,
 
-                  decoration: InputDecoration(
+                  decoration: const InputDecoration(
                       labelText: "Email", border: OutlineInputBorder()),
 
                   // validacao
@@ -73,7 +84,7 @@ class _TelaLoginViewState extends State<TelaLoginView> {
                   },
                 ),
 
-                SizedBox(
+                const SizedBox(
                   height: 30,
                 ),
 
@@ -81,7 +92,7 @@ class _TelaLoginViewState extends State<TelaLoginView> {
                 TextFormField(
                   controller: txtSenha,
 
-                  decoration: InputDecoration(
+                  decoration: const InputDecoration(
                       labelText: "Senha", border: OutlineInputBorder()),
 
                   // validacao
@@ -96,14 +107,14 @@ class _TelaLoginViewState extends State<TelaLoginView> {
                   },
                 ),
 
-                SizedBox(
+                const SizedBox(
                   height: 30,
                 ),
 
                 // botao entrar
                 OutlinedButton(
                   style: OutlinedButton.styleFrom(
-                    minimumSize: Size(200, 60),
+                    minimumSize: const Size(200, 60),
                     backgroundColor: Colors.blue,
                     foregroundColor: Colors.yellow,
                   ),
@@ -120,9 +131,12 @@ class _TelaLoginViewState extends State<TelaLoginView> {
                           if (usr.getEmail() == email &&
                               usr.getSenha() == senha) {
                             flag = true;
-                            caixaDialogo(context, "Logado com sucesso!", "");
+                            Future.delayed(Duration.zero, () {
+                              caixaDialogo(context, "Logado com sucesso!", "");
+                            });
+
                             Navigator.pushNamed(context, "t3",
-                                arguments: lista);
+                                arguments: listas);
                           }
 
                           if (!flag) {
@@ -135,13 +149,13 @@ class _TelaLoginViewState extends State<TelaLoginView> {
                       // erro na validacao
                     }
                   },
-                  child: Text(
+                  child: const Text(
                     "Entrar",
                     style: TextStyle(fontSize: 36),
                   ),
                 ),
 
-                SizedBox(
+                const SizedBox(
                   height: 30,
                 ),
 
@@ -155,7 +169,7 @@ class _TelaLoginViewState extends State<TelaLoginView> {
                   onPressed: () {
                     Navigator.pushNamed(context, "t2", arguments: lista);
                   },
-                  child: Text(
+                  child: const Text(
                     "Cadastrar-se",
                     style: TextStyle(fontSize: 36),
                   ),

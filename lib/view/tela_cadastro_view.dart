@@ -23,7 +23,7 @@ class _TelaCadastroViewState extends State<TelaCadastroView> {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text("Tela de Cadastro"),
+        title: const Text("Tela de Cadastro"),
         backgroundColor: Colors.blue.shade400,
       ),
       body: Padding(
@@ -38,7 +38,7 @@ class _TelaCadastroViewState extends State<TelaCadastroView> {
                 TextFormField(
                   controller: txtEmail,
 
-                  decoration: InputDecoration(
+                  decoration: const InputDecoration(
                     labelText: "Email",
                     border: OutlineInputBorder(),
                   ),
@@ -53,7 +53,7 @@ class _TelaCadastroViewState extends State<TelaCadastroView> {
                   },
                 ),
 
-                SizedBox(
+                const SizedBox(
                   height: 30,
                 ),
 
@@ -61,7 +61,7 @@ class _TelaCadastroViewState extends State<TelaCadastroView> {
                 TextFormField(
                   controller: txtSenha,
 
-                  decoration: InputDecoration(
+                  decoration: const InputDecoration(
                     labelText: "Senha",
                     border: OutlineInputBorder(),
                   ),
@@ -71,12 +71,15 @@ class _TelaCadastroViewState extends State<TelaCadastroView> {
                   validator: (value) {
                     if (value!.isEmpty) {
                       return "Informe um valor";
+                    } else if (value.length < 4) {
+                      return "Senha menor que 4 caracteres";
                     }
+
                     return null;
                   },
                 ),
 
-                SizedBox(
+                const SizedBox(
                   height: 30,
                 ),
 
@@ -92,7 +95,7 @@ class _TelaCadastroViewState extends State<TelaCadastroView> {
                       Navigator.pop(context);
                     }
                   },
-                  child: Text(
+                  child: const Text(
                     "Cadastrar",
                     style: TextStyle(fontSize: 36),
                   ),

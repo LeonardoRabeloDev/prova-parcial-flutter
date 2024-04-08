@@ -1,6 +1,5 @@
 import 'package:execs/Model/Lista.dart';
-import 'package:execs/view/caixa_dialogo.dart';
-import 'package:execs/view/caixa_input.dart';
+import 'package:execs/view/caixa_input_lista.dart';
 import 'package:flutter/material.dart';
 
 class TelaListasView extends StatefulWidget {
@@ -11,22 +10,13 @@ class TelaListasView extends StatefulWidget {
 }
 
 class _TelaListasViewState extends State<TelaListasView> {
-  List<Lista> listas = [];
-
-  @override
-  void initState() {
-    listas.add(Lista("Lista Jantar"));
-    listas[0].addProduto("Salmão", 14.0);
-    listas[0].addProduto("Vinho", 38.0);
-
-    listas.add(Lista("Lista Mensal"));
-    listas[1].addProduto("Arroz", 28.0);
-
-    super.initState();
-  }
 
   @override
   Widget build(BuildContext context) {
+    List<Lista> listas =
+        ModalRoute.of(context)!.settings.arguments as List<Lista>;
+
+
     return Scaffold(
       appBar: AppBar(
         title: Text("Listas cadastradas"),
@@ -54,11 +44,11 @@ class _TelaListasViewState extends State<TelaListasView> {
       floatingActionButton: FloatingActionButton(
         onPressed: () {
 
-            caixaInput(context, listas, setState);
+            caixaInputLista(context, listas, setState);
           
         },
         shape: CircleBorder(),
-        child: Icon(Icons.add),
+        child: const Icon(Icons.add),
       ),
     );
   }

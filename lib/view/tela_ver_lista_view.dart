@@ -1,4 +1,5 @@
 import 'package:execs/Model/Lista.dart';
+import 'package:execs/view/caixa_input_produto.dart';
 import 'package:flutter/material.dart';
 
 class TelaVerListaView extends StatefulWidget {
@@ -19,8 +20,15 @@ class _TelaVerListaViewState extends State<TelaVerListaView> {
         backgroundColor: Colors.blue.shade400,
       ),
       body: Padding(
-        padding: EdgeInsets.all(20),
+        padding: const EdgeInsets.all(20),
         child: lista.createList(),
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          caixaInputProduto(context, lista, setState);
+        },
+        shape: const CircleBorder(),
+        child: const Icon(Icons.add),
       ),
     );
   }

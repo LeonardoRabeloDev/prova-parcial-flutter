@@ -1,7 +1,7 @@
 import 'package:execs/Model/Lista.dart';
 import 'package:flutter/material.dart';
 
-Future<dynamic> caixaInput(context, lista, fn) {
+Future<dynamic> caixaInputLista(context, lista, cb) {
   var formKey = GlobalKey<FormState>();
 
   var txtNomeLista = TextEditingController();
@@ -9,7 +9,7 @@ Future<dynamic> caixaInput(context, lista, fn) {
   return showDialog(
     context: context,
     builder: (BuildContext context) => AlertDialog(
-      title: Text("Adicionar lista"),
+      title: const Text("Adicionar lista"),
       actions: [
         Form(
           key: formKey,
@@ -19,7 +19,7 @@ Future<dynamic> caixaInput(context, lista, fn) {
               TextFormField(
                 controller: txtNomeLista,
 
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                   labelText: "Nome da lista",
                   border: OutlineInputBorder(),
                 ),
@@ -34,24 +34,26 @@ Future<dynamic> caixaInput(context, lista, fn) {
                 },
               ),
 
-              SizedBox(
+              const SizedBox(
                 height: 30,
               ),
 
               OutlinedButton(
                 style: OutlinedButton.styleFrom(
-                  minimumSize: Size(140, 40),
+                  minimumSize: const Size(140, 40),
                   backgroundColor: Colors.blue,
                   foregroundColor: Colors.yellow,
                 ),
                 onPressed: () {
                   if (formKey.currentState!.validate()) {
-
                     lista.add(Lista(txtNomeLista.text));
+
+                    cb(() {});
+
                     Navigator.pop(context);
                   }
                 },
-                child: Text(
+                child: const Text(
                   "Adicionar",
                   style: TextStyle(fontSize: 18),
                 ),
