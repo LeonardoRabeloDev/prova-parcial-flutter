@@ -1,4 +1,3 @@
-import 'package:execs/Model/Produto.dart';
 import 'package:flutter/material.dart';
 
 Future<dynamic> caixaInputProduto(context, lista, cb) {
@@ -6,6 +5,7 @@ Future<dynamic> caixaInputProduto(context, lista, cb) {
 
   var txtNome = TextEditingController();
   var txtPreco = TextEditingController();
+  var txtQuantidade = TextEditingController();
 
   return showDialog(
     context: context,
@@ -48,6 +48,32 @@ Future<dynamic> caixaInputProduto(context, lista, cb) {
                   border: OutlineInputBorder(),
                 ),
 
+                keyboardType:
+                    const TextInputType.numberWithOptions(decimal: true),
+
+                // validacao
+
+                validator: (value) {
+                  if (value!.isEmpty) {
+                    return "Informe um valor";
+                  }
+                  return null;
+                },
+              ),
+
+              const SizedBox(
+                height: 30,
+              ),
+
+              // quantidade input
+              TextFormField(
+                controller: txtQuantidade,
+
+                decoration: const InputDecoration(
+                  labelText: "Quantidade",
+                  border: OutlineInputBorder(),
+                ),
+
                 keyboardType: TextInputType.number,
 
                 // validacao
@@ -72,7 +98,11 @@ Future<dynamic> caixaInputProduto(context, lista, cb) {
                 ),
                 onPressed: () {
                   if (formKey.currentState!.validate()) {
-                    lista.addProduto(txtNome.text, double.parse(txtPreco.text));
+                    lista.addProduto(
+                        txtNome.text,
+                        double.parse(txtPreco.text.replaceFirst(",", ".")),
+                        int.parse(txtQuantidade.text)
+                    );
 
                     cb(() {});
 

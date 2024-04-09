@@ -21,7 +21,7 @@ class _TelaVerListaViewState extends State<TelaVerListaView> {
       ),
       body: Padding(
         padding: const EdgeInsets.all(20),
-        child: lista.createList(),
+        child: lista.createList(setState),
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {

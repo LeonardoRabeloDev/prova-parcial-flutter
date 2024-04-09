@@ -29,11 +29,11 @@ class _TelaLoginViewState extends State<TelaLoginView> {
       lista.add(Usuario("admin", "admin"));
 
       listas.add(Lista("Lista Jantar"));
-      listas[0].addProduto("Salmão", 14.0);
-      listas[0].addProduto("Vinho", 38.0);
+      listas[0].addProduto("Salmão", 14.0, 3);
+      listas[0].addProduto("Vinho", 38.0, 1);
 
       listas.add(Lista("Lista Mensal"));
-      listas[1].addProduto("Arroz", 28.0);
+      listas[1].addProduto("Arroz", 28.0, 4);
     }
     super.initState();
   }

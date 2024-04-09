@@ -19,11 +19,11 @@ class Lista {
     return this.lista.length;
   }
 
-  addProduto(nome, preco) {
-    lista.add(Produto(nome, preco));
+  addProduto(nome, preco, quantidade) {
+    lista.add(Produto(nome, preco, quantidade));
   }
 
-  createList() {
+  createList(cb) {
     return ListView.builder(
         itemCount: lista.length,
         itemBuilder: (context, index) {
@@ -32,7 +32,11 @@ class Lista {
               leading: Icon(Icons.monetization_on),
               title: Text("Nome: ${lista[index].getNome()}"),
               subtitle: Text(
-                  "Preço: R\$${lista[index].getPreco().toString().replaceAll(".", ",")}"),
+                  "Preço: R\$${lista[index].getPrecoMoeda()}\nQuantidade: ${lista[index].getQuantidade()}"),
+              onLongPress: () {
+                lista.remove(lista[index]);
+                cb(() {});
+              },
             ),
           );
         });
