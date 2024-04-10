@@ -11,7 +11,7 @@ void main() {
   runApp(
     DevicePreview(
       enabled: true,
-      builder: (context) => MainApp(),
+      builder: (context) => const MainApp(),
     ),
   );
 }
@@ -29,11 +29,11 @@ class MainApp extends StatelessWidget {
 
       initialRoute: "t1",
       routes: {
-        "t1": (context) => TelaLoginView(),
-        "t2": (context) => TelaCadastroView(),
-        "t3": (context) => TelaListasView(),
-        "t4": (context) => TelaVerListaView(),
-        // "t4": (context) => TelaSobreView(),
+        "t1": (context) => const TelaLoginView(),
+        "t2": (context) => const TelaCadastroView(),
+        "t3": (context) => const TelaListasView(),
+        "t4": (context) => const TelaVerListaView(),
+        "t5": (context) => const TelaSobreView(),
       },
     );
   }

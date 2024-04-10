@@ -139,7 +139,7 @@ class _TelaLoginViewState extends State<TelaLoginView> {
                                 arguments: listas);
                           }
 
-                          if (!flag) {
+                          if (flag == false) {
                             caixaDialogo(context, "Usuário não encontrado",
                                 "Tente novamente");
                           }
@@ -162,7 +162,7 @@ class _TelaLoginViewState extends State<TelaLoginView> {
                 // botao cadastrar
                 OutlinedButton(
                   style: OutlinedButton.styleFrom(
-                    minimumSize: Size(200, 60),
+                    minimumSize: const Size(200, 60),
                     backgroundColor: Colors.blue,
                     foregroundColor: Colors.yellow,
                   ),
@@ -171,6 +171,25 @@ class _TelaLoginViewState extends State<TelaLoginView> {
                   },
                   child: const Text(
                     "Cadastrar-se",
+                    style: TextStyle(fontSize: 36),
+                  ),
+                ),
+
+                const SizedBox(
+                  height: 30,
+                ),
+
+                OutlinedButton(
+                  style: OutlinedButton.styleFrom(
+                    minimumSize: const Size(200, 60),
+                    backgroundColor: Colors.blue,
+                    foregroundColor: Colors.yellow,
+                  ),
+                  onPressed: () {
+                    Navigator.pushNamed(context, "t5");
+                  },
+                  child: const Text(
+                    "Sobre",
                     style: TextStyle(fontSize: 36),
                   ),
                 ),
